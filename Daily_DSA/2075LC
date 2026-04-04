@@ -1,1 +1,28 @@
+//LEET CODE:2075
+//Decode the Slanted Ciphertext
+//Input: encodedText = "ch   ie   pr", rows = 3
+///Output: "cipher"
+//Explanation: This is the same example described in the problem description.
+//-----------------code------------------
+class Solution {
+    public String decodeCiphertext(String encodedText, int rows) {
+        if(rows == 1) return encodedText;
 
+        int len = encodedText.length();
+        int col = len/rows;
+        StringBuilder result = new StringBuilder();
+
+        for(int startCol =0; startCol < col; startCol++){
+            for(int j = startCol; j<len ; j+=(col+1)){
+                result.append(encodedText.charAt(j));
+            }
+            
+        }
+        //removing tariling spaces
+        while(result.length()>0 && result.charAt(result.length()-1)==' '){
+            result.deleteCharAt(result.length()-1);
+        }
+        return result.toString();
+        
+    }
+}
