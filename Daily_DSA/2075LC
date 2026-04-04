@@ -3,7 +3,9 @@
 //Input: encodedText = "ch   ie   pr", rows = 3
 ///Output: "cipher"
 //Explanation: This is the same example described in the problem description.
+
 //-----------------code------------------
+
 class Solution {
     public String decodeCiphertext(String encodedText, int rows) {
         if(rows == 1) return encodedText;
