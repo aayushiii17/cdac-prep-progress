@@ -1,0 +1,26 @@
+//Example 1:
+
+Input: moves = "UD"
+Output: true
+Explanation: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.
+Example 2:
+
+Input: moves = "LL"
+Output: false
+Explanation: The robot moves left twice. It ends up two "moves" to the left of the origin. We return false because it is not at the origin at the end of its moves.
+
+
+class Solution {
+    public boolean judgeCircle(String moves) {
+        int up =0, down =0, left =0, right =0;
+
+        for(char c: moves.toCharArray()){
+            if(c=='U') up++;
+            else if (c=='D') down++;
+            else if(c == 'L') left++;
+            else if (c== 'R') right++;
+        }
+        return up == down && left == right;
+        
+    }
+}
