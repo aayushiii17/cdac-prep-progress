@@ -1,0 +1,74 @@
+874. Walking Robot Simulation
+
+-2: Turn left 90 degrees.
+-1: Turn right 90 degrees.
+1 <= k <= 9: Move forward k units, one unit at a time.
+EG: Input: commands = [4,-1,3], obstacles = []
+
+Output: 25
+
+Explanation:
+
+The robot starts at (0, 0):
+
+Move north 4 units to (0, 4).
+Turn right.
+Move east 3 units to (3, 4).
+//The furthest point the robot ever gets from the origin is (3, 4), which squared is 32 + 42 = 25 units away.
+/* ----------------------------------------------------------------------------------------------------------*/
+
+import java.util.*;
+
+class Solution {
+    public int robotSim(int[] commands, int[][] obstacles) {
+        
+        // Store obstacles in HashSet
+        Set<String> set = new HashSet<>();
+        for (int[] obs : obstacles) {
+            set.add(obs[0] + "," + obs[1]);
+        }
+        
+        // Directions: North, East, South, West
+        int[][] dir = {
+            {0, 1},   // North
+            {1, 0},   // East
+            {0, -1},  // South
+            {-1, 0}   // West
+        };
+        
+        int x = 0, y = 0;
+        int d = 0; // start facing North
+        int maxDist = 0;
+        
+        for (int cmd : commands) {
+            
+            if (cmd == -1) {
+                // turn right
+                d = (d + 1) % 4;
+                
+            } else if (cmd == -2) {
+                // turn left
+                d = (d + 3) % 4;
+                
+            } else {
+                // move step by step
+                for (int i = 0; i < cmd; i++) {
+                    int nx = x + dir[d][0];
+                    int ny = y + dir[d][1];
+                    
+                    // check obstacle
+                    if (set.contains(nx + "," + ny)) {
+                        break;
+                    }
+                    
+                    x = nx;
+                    y = ny;
+                    
+                    maxDist = Math.max(maxDist, x * x + y * y);
+                }
+            }
+        }
+        
+        return maxDist;
+    }
+}
