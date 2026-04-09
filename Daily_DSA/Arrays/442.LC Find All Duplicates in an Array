@@ -1,0 +1,47 @@
+442. Find All Duplicates in an Array
+Example 1:
+
+Input: nums = [4,3,2,7,8,2,3,1]
+Output: [2,3]
+Example 2:
+
+Input: nums = [1,1,2]
+Output: [1]
+Example 3:
+
+/*--------------------Code-------------------------*/
+ class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        
+        //Method 1: HASHMAP 
+        //storing key value pair 
+        // HashMap<Integer,Integer> map = new HashMap<>();
+        // //to store ans
+        // List<Integer> ans = new ArrayList<>();
+
+        // for(int i = 0; i<nums.length; i++){
+        //     map.put(nums[i], map.getOrDefault(nums[i],0)+1);
+        //     //First get the count, then compare it with 2 [() mistake]
+        //     if(map.get(nums[i])==2){
+        //         ans.add(nums[i]);
+        //     }
+        // }
+        // return ans;
+        /**------------------------------------------------------------------------- */
+
+        //METHOD 2: INDEX MARKING -VE!!
+        List<Integer> ans = new ArrayList<>();
+        for(int i=0; i<nums.length; i++){
+            // 1. Calculating the  INDEX which has to be marked negative
+            int index = Math.abs(nums[i])-1;
+            //2. checking the INDEX!! value is already -ve then its a duplicate
+            // when visited 2nd time
+            if(nums[index]<0){
+                ans.add(Math.abs(nums[i]));// 4. result: unmark -ve and store in ans
+            }
+            nums[index]=-nums[index];// 3. marking the INDEX!! -ve when visited 1st time
+        }
+        return ans;
+      
+    }
+}
