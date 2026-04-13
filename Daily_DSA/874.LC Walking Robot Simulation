@@ -15,7 +15,7 @@ Move north 4 units to (0, 4).
 Turn right.
 Move east 3 units to (3, 4).
 //The furthest point the robot ever gets from the origin is (3, 4), which squared is 32 + 42 = 25 units away.
-/* ----------------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------------CODE----------------------------------------------------------*/
 
 import java.util.*;
 
