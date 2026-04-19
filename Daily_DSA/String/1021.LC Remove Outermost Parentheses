@@ -1,0 +1,57 @@
+1021. Remove Outermost Parentheses
+
+Example 1:
+
+Input: s = "(()())(())"
+Output: "()()()"
+Explanation: 
+The input string is "(()())(())", with primitive decomposition "(()())" + "(())".
+After removing outer parentheses of each part, this is "()()" + "()" = "()()()".
+
+----------------------------code----------------------------
+
+class Solution {
+    public String removeOuterParentheses(String s) {
+        Stack<Character> stack= new Stack<>();
+        StringBuilder sb = new StringBuilder("");
+
+        stack.push(s.charAt(0));
+--------------------------------Approach 1----------------------------------
+
+        // for(int i = 1; i<s.length(); i++){
+        //     if(s.charAt(i)=='('){
+        //         if(!stack.isEmpty()){
+        //             sb.append(s.charAt(i));
+        //         }
+        //        stack.push('(');
+        //     }
+            
+        //     else{
+        //         stack.pop();
+        //         if(!stack.isEmpty()){
+        //             sb.append(s.charAt(i));
+        //         }
+        //     }
+        // }
+        // return sb.toString();
+--------------------------------Approach 2----------------------------------
+
+        for(int i =1 ; i<s.length(); i++){
+            if(s.charAt(i)=='('){
+                if(!stack.isEmpty()){
+                    sb.append(s.charAt(i));//if stack is not empty : inner braces so puch in ans
+                }
+                stack.push(s.charAt(i));// if stack is empty just push in stack
+            }
+            else{
+                stack.pop();// we hit ')' so pop stack
+
+                if(!stack.isEmpty()){
+                    sb.append(s.charAt(i));
+                }
+            }
+        }
+        return sb.toString();
+        
+    }
+}
