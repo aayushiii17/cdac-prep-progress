@@ -1,0 +1,36 @@
+151. Reverse Words in a String
+MEDIUM
+
+Example 1:
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+
+Example 2:
+Input: s = "  hello world  "
+Output: "world hello"
+
+Example 3:
+Input: s = "a good   example"
+Output: "example good 
+-------------------------------Code------------------------
+class Solution {
+    public String reverseWords(String s) {
+        StringBuilder result = new StringBuilder();
+        // start from end
+        int i = s.length()-1;
+
+        while(i>=0){
+            //skip spaces
+            while(i>= 0 && s.charAt(i)==' ') i--;
+            if(i<0) break; // when i is -1
+            int j =i;
+            // find the word 
+            while(i>=0 && s.charAt(i) != ' ')i--;
+            //append word
+            result.append(s.substring(i+1,j+1)).append(' ');
+            
+        } 
+        return result.toString().trim();
+        
+    }
+}
