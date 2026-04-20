@@ -1,0 +1,42 @@
+14. Longest Common Prefix
+EASY
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+Example 2:
+
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings
+---------------------code-----------------
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        int len = strs[0].length();
+
+        for(int i = 1; i<strs.length; i++){
+            len = Math.min(len, strs[i].length());// finding smallest string (easy for comapring)
+        }
+        String st = strs[0];
+        boolean flag = false;
+        int i; // to return the substring after for loop (to access i outside for loop)
+        //for 0th index to n-1 index for each string : Comapring from the smallest string  
+        for(i = 0; i<len;i++){
+            //for string 2 to rest string for comaprision
+            for(int j=1; j<strs.length; j++) {
+                if(st.charAt(i) != strs[j].charAt(i)){
+                    flag = true;
+                    break;
+                }       
+            }
+            if(flag){
+                break;
+            }
+            
+            
+        }
+       
+        return st.substring(0,i);
+        
+    }
+}
