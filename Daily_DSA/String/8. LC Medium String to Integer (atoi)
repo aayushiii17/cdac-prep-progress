@@ -9,7 +9,7 @@ Explanation:
 
 Step 1: "   -042" (leading whitespace is read and ignored)
 
--------------------------code---------------------
+-------------------------code----------------------------
 class Solution {
     public int myAtoi(String s) {
         int i =0, n= s.length();
